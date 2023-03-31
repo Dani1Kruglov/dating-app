@@ -10,7 +10,10 @@ class IndexController extends Controller
 {
     public function index(){
         $user = Users::inRandomOrder()->first();
-
+        if ($user->name === auth()->user()->name)
+        {
+            return redirect()->route('index');
+        }
         return view('index', compact('user'));
     }
 
