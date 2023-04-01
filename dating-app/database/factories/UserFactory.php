@@ -22,8 +22,6 @@ class UserFactory extends Factory
             'birth_date'=>fake()->date(),
             'email' => fake()->unique()->safeEmail(),
             'content'=>fake()->text(150),
-            'likes'=>fake()->numberBetween(0,1000),
-            'dislikes'=>fake()->numberBetween(0,200),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

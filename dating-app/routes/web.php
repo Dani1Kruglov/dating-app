@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'IndexController@index')->name('index');
-Route::get('/home/{user}', 'IndexController@updateLikes')->name('likes.update');
 
+Route::group(['middleware'=>'allRoles'], function (){
+    Route::get('/home', 'IndexController@index')->name('index');
+    Route::get('/home/{user}/dislike', 'IndexController@updateDislikes')->name('dislikes.update');
+    Route::get('/home/{user}/like', 'IndexController@updateLikes')->name('likes.update');
+});
 
 Route::get('/', 'HomeController@index')->name('log.register');
+
+
+Route::get('/h', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

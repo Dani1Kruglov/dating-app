@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index(){
         $user = Users::inRandomOrder()->first();
-        if ($user->name === auth()->user()->name)
+        if ($user->id === auth()->user()->id)
         {
             return redirect()->route('index');
         }
@@ -24,6 +24,15 @@ class IndexController extends Controller
         $data++;
         $user->update([
             'likes'=>$data,
+        ]);
+        return redirect()->route('index');
+    }
+    public function updateDislikes(Users $user)
+    {
+        $data = $user->dislikes;
+        $data++;
+        $user->update([
+            'dislikes'=>$data,
         ]);
         return redirect()->route('index');
     }
