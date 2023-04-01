@@ -23,10 +23,8 @@
         <div class="d-flex flex-wrap  justify-content-center justify-content-lg-start">
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-white">Likes</a></li>
-                <li class="nav-link px-2 text-white">{{auth()->user()->likes}}</li>
-                <li><a href="#" class="nav-link px-2 text-white">Dislikes</a></li>
-                <li class="nav-link px-2 text-white">{{auth()->user()->dislikes}}</li>
+                <li class="nav-link px-2 text-white">Likes   {{auth()->user()->likes}}</li>
+                <li class="nav-link px-2 text-white">Dislikes   {{auth()->user()->dislikes}}</li>
             </ul>
 
             <div class="text-end">
@@ -35,15 +33,22 @@
             </div>
             <div class="dropdown" style="margin-left: 20px">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <img src="https://sun9-45.userapi.com/impg/zWExPHeXVc_65219zmjjpCL1nnUd_L-KubnMVQ/5vTCq1OyoRA.jpg?size=1979x2160&quality=96&sign=a14d6474f26046615a90a0630bf9ce7d&type=album" alt="" width="32" height="32" class="rounded-circle me-2">
                     {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{route('my.page', auth()->user()->id)}}">
+                        My profile
+                    </a>
+                    <a class="dropdown-item" href="{{route('home')}}">
+                        Back
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -54,12 +59,7 @@
 </header>
 
 <div class="container-fluid">
-    <div class="row">
-        @include('includes.sidebar')
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            @yield('content')
-        </div>
-    </div>
+    @yield('content')
 </div>
 
 

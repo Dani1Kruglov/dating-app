@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LikesUpdateRequest;
+use App\Http\Requests\MyPageUpdateRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class IndexController extends Controller
         $user->update([
             'likes'=>$data,
         ]);
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
     public function updateDislikes(Users $user)
     {
@@ -34,6 +34,6 @@ class IndexController extends Controller
         $user->update([
             'dislikes'=>$data,
         ]);
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 }

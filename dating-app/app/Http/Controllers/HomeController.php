@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,13 +17,13 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        $user = Users::inRandomOrder()->first();
+        if ($user->id === auth()->user()->id)
+        {
+            return redirect()->route('home');
+        }
+        return view('index', compact('user'));
     }
 }
