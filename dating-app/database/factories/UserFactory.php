@@ -17,9 +17,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             'name' => fake()->name(),
             'birth_date'=>fake()->date(),
+            'country'=> fake()->country(),
+            'city'=>fake()->city(),
+            'gender'=>fake()->randomElement(['Мужчина', 'Женщина']),
             'email' => fake()->unique()->safeEmail(),
             'content'=>fake()->text(150),
             'email_verified_at' => now(),

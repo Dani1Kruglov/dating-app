@@ -24,6 +24,10 @@ class MyPageUpdateRequest extends FormRequest
         return [
             'name'=>'string',
             'content'=>'string',
+            'country'=>'string',
+            'city'=>'string',
+            'gender'=>'string',
+            'family_status'=>'string',
         ];
     }
 }

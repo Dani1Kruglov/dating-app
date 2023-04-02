@@ -50,7 +50,7 @@
                 <div class="panel-heading">
                     <header class="panel-title">
                         <div class="text-center">
-                            <strong>Пользователь сайта</strong>
+                            <strong>Моя страница</strong>
                         </div>
                     </header>
                 </div>
@@ -86,12 +86,11 @@
                             <table class="table table-th-block">
                                 <tbody>
                                 <tr><td class="active">Зарегистрирован:</td><td>{{$user->created_at}}</td></tr>
-                                <tr><td class="active">Последняя активность:</td><td>12-06-2016 / 09:11</td></tr>
-                                <tr><td class="active">Страна:</td><td>Россия</td></tr>
-                                <tr><td class="active">Город:</td><td>Волгоград</td></tr>
-                                <tr><td class="active">Пол:</td><td>Мужской</td></tr>
+                                <tr><td class="active">Страна:</td><td>{{$user->country}}</td></tr>
+                                <tr><td class="active">Город:</td><td>{{$user->city}}</td></tr>
+                                <tr><td class="active">Пол:</td><td>{{$user->gender}}</td></tr>
                                 <tr><td class="active">Полных лет:</td><td>43</td></tr>
-                                <tr><td class="active">Семейное положение:</td><td>Женат</td></tr>
+                                <tr><td class="active">Семейное положение:</td><td>{{$user->family_status}}</td></tr>
                                 <tr><td class="active">Рейтинг пользователя:</td><td>
                                         @for($i = 0; $i < $rating; $i++)
                                             <i class="fa fa-star" style="color:red"></i>

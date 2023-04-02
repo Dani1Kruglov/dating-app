@@ -80,6 +80,17 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Your gender') }}</label>
+
+                            <div class="col-md-6">
+                                <select  required autocomplete="gender" class="form-select" aria-label="Default select example" name="gender" id="validationCustom02" >
+                                    <option value="Мужчина" >Мужчина </option>
+                                    <option value="Женщина">Женщина</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

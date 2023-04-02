@@ -8,15 +8,6 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(){
-        $user = Users::inRandomOrder()->first();
-        if ($user->id === auth()->user()->id)
-        {
-            return redirect()->route('index');
-        }
-        return view('index', compact('user'));
-    }
-
 
     public function updateLikes(Users $user)
     {

@@ -4,7 +4,7 @@
     <div class="row">
         @include('includes.sidebar')
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class="card" style="height: 650px; width: 400px; margin-left: 700px; margin-top: 50px">
+            <div class="card" style="height: 650px; width: 400px; margin-left: 500px; margin-top: 50px">
                 <img src="https://www.womanhit.ru/media/CACHE/images/articleimage2/2019/9/7_pVsNixT/fd02723d4d6e4ec4a69980fd7324681d.jpg" class="card-img-top" style="height: 400px; width: 400px">
                 <div class="card-body">
                     <h5 class="card-title">{{$user->name}}</h5>

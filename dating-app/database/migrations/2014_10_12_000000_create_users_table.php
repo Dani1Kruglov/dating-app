@@ -17,6 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('dislikes')->default(0);
             $table->string('role')->default('user');
+            $table->string('country')->default('null');
+            $table->string('city')->default('null');
+            $table->string('family_status')->default('Свободен');
+            $table->string('gender');
             $table->string('email')->unique();
             $table->date('birth_date');
             $table->text('content')->default('null');
