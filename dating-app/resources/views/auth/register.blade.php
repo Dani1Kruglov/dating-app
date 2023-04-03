@@ -99,6 +99,9 @@
                             </div>
                         </div>
                     </form>
+                    <div class="restore-account" style="margin-top: 30px; margin-left: 30px">
+                        Если у вас уже был аккаунт, вы можете восстановить его <a href="{{route('check.account')}}" style="text-decoration: none"> тут </a>
+                    </div>
                 </div>
             </div>
         </div>

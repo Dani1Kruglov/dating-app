@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('likes')->default(0);
-            $table->unsignedBigInteger('dislikes')->default(0);
+            $table->string('email')->unique();
             $table->string('role')->default('user');
+            $table->date('birth_date');
+            $table->text('content')->default('null');
             $table->string('country')->default('null');
             $table->string('city')->default('null');
             $table->string('family_status')->default('Свободен');
             $table->string('gender');
-            $table->string('email')->unique();
-            $table->date('birth_date');
-            $table->text('content')->default('null');
+            $table->unsignedBigInteger('likes')->default(0);
+            $table->unsignedBigInteger('dislikes')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->softDeletes();

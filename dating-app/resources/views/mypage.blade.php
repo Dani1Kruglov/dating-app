@@ -136,6 +136,14 @@
                     </div>
                 </div>
             </div>
+
+            <form action="{{route('my.page.destroy', auth()->user()->id)}}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">
+                    Удалить аккаунт
+                </button>
+            </form>
         </div>
     </div>
 </div>

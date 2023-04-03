@@ -12,6 +12,6 @@ class UpdateController extends Controller
     {
         $data = $request->validated();
         $user->update($data);
-        return redirect()->route('my.page', auth()->user());
+        return redirect()->route('my.page');
     }
 }
