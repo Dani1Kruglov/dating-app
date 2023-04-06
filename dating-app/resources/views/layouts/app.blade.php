@@ -32,7 +32,7 @@
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
             <div class="dropdown" style="margin-left: 20px">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <img src="https://sun9-45.userapi.com/impg/zWExPHeXVc_65219zmjjpCL1nnUd_L-KubnMVQ/5vTCq1OyoRA.jpg?size=1979x2160&quality=96&sign=a14d6474f26046615a90a0630bf9ce7d&type=album" alt="" width="32" height="32" class="rounded-circle me-2">
                     {{ Auth::user()->name }}
                 </a>

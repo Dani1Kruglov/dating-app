@@ -10,6 +10,6 @@ class DestroyController extends Controller
     public function __invoke(Users $user)
     {
         $user -> delete();
-        return redirect()->route('log.register');
+        return redirect()->route('login');
     }
 }

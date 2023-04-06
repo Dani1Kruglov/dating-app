@@ -17,7 +17,7 @@
                     {{$message}}
                 </div>
                 <div class="modal-footer">
-                    <form action="{{route('log.register')}}">
+                    <form action="{{route('login')}}">
                         <button type="submit" class="btn btn-success"> Войти в аккаунт</button>
                     </form>
                 </div>
