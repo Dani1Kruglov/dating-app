@@ -15,6 +15,6 @@ class RestoreController extends Controller
     public function forceDeleteAccount()
     {
         Users::where('email', $_POST['email'])->forceDelete();
-        return redirect()->route('login');
+        return redirect()->route('register');
     }
 }

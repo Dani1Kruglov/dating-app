@@ -98,6 +98,7 @@
                                             {{$rating}}
                                     </td>
                                 </tr>
+                                <tr><td class="active">Верификация email</td><td>{{$verification}}</td>
                                  </tbody>
                             </table>
                         </div>
