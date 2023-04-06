@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('role')->default('user');
             $table->date('birth_date');
-            $table->text('content')->default('null');
-            $table->string('country')->default('null');
-            $table->string('city')->default('null');
+            $table->text('content')->default('О себе');
+            $table->string('country')->default('Страна');
+            $table->string('city')->default('Город');
             $table->string('family_status')->default('Свободен');
             $table->string('gender');
             $table->unsignedBigInteger('likes')->default(0);

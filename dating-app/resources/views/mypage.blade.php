@@ -85,7 +85,7 @@
                             <h4>История профиля</h4>
                             <table class="table table-th-block">
                                 <tbody>
-                                <tr><td class="active">Зарегистрирован:</td><td>{{$user->created_at}}</td></tr>
+                                <tr><td class="active">Зарегистрирован:</td><td>{{$user->created_at->toFormattedDateString()}}</td></tr>
                                 <tr><td class="active">Страна:</td><td>{{$user->country}}</td></tr>
                                 <tr><td class="active">Город:</td><td>{{$user->city}}</td></tr>
                                 <tr><td class="active">Пол:</td><td>{{$user->gender}}</td></tr>

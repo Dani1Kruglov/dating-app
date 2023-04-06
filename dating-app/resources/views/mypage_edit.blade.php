@@ -49,9 +49,9 @@
             <option value="Женщина">Женщина</option>
         </select>
         <select class="form-select" aria-label="Default select example" name="family_status" id="validationCustom02" required value="{{$user->family_status}}">
+            <option value="Свободен/на"> Свободен/на </option>
             <option value="Женат"> Женат </option>
             <option value="Замужем"> Замужем </option>
-            <option value="Свободен/на"> Свободен/на </option>
             <option value="В поиске"> В поиске </option>
         </select>
         <div class="col-12">
