@@ -17,7 +17,7 @@ class UserPanelMiddleware
     {
         if (empty(auth()->user()->role))
         {
-            return redirect()->route('log.register');
+            return redirect()->route('login');
         }
         return $next($request);
     }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
@@ -18,9 +19,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
 
+        $birthDate=fake()->date();
+        $gender= fake()->randomElement(['male', 'female']);
+        $age = Carbon::parse($birthDate)->diffInYears();
+        /*если сделать 'gender'=>$gender будет выводится ошибка с прочтением id  (Attempt to read property и тд)*/
+
         return [
-            'name' => fake()->name(),
-            'birth_date'=>fake()->date(),
+            'name' => fake()->firstName($gender),
+            'birth_date'=>$birthDate,
+            'age'=>$age,
             'country'=> fake()->country(),
             'city'=>fake()->city(),
             'gender'=>fake()->randomElement(['Мужчина', 'Женщина']),

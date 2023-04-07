@@ -89,7 +89,7 @@
                                 <tr><td class="active">Страна:</td><td>{{$user->country}}</td></tr>
                                 <tr><td class="active">Город:</td><td>{{$user->city}}</td></tr>
                                 <tr><td class="active">Пол:</td><td>{{$user->gender}}</td></tr>
-                                <tr><td class="active">Полных лет:</td><td>43</td></tr>
+                                <tr><td class="active">Полных лет:</td><td>{{$user->age}}</td></tr>
                                 <tr><td class="active">Семейное положение:</td><td>{{$user->family_status}}</td></tr>
                                 <tr><td class="active">Рейтинг пользователя:</td><td>
                                         @for($i = 0; $i < $rating; $i++)
