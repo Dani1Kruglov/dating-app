@@ -20,9 +20,8 @@ class UserFactory extends Factory
     {
 
         $birthDate=fake()->date();
-        $gender= fake()->randomElement(['male', 'female']);
+        $gender= fake()->randomElement(['Male', 'Female']);
         $age = Carbon::parse($birthDate)->diffInYears();
-        /*если сделать 'gender'=>$gender будет выводится ошибка с прочтением id  (Attempt to read property и тд)*/
 
         return [
             'name' => fake()->firstName($gender),
@@ -30,7 +29,7 @@ class UserFactory extends Factory
             'age'=>$age,
             'country'=> fake()->country(),
             'city'=>fake()->city(),
-            'gender'=>fake()->randomElement(['Мужчина', 'Женщина']),
+            'gender'=>$gender,
             'email' => fake()->unique()->safeEmail(),
             'content'=>fake()->text(150),
             'email_verified_at' => now(),

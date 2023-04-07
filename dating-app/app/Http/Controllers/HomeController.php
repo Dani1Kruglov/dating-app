@@ -19,8 +19,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (auth()->user()->gender === 'Мужчина') {$user = Users::where('gender', 'Женщина')->inRandomOrder()->first();}
-        elseif(auth()->user()->gender === 'Женщина'){$user = Users::where('gender', 'Мужчина')->inRandomOrder()->first();}
+        if (auth()->user()->gender === 'Male') {$user = Users::where('gender', 'Female')->inRandomOrder()->first();}
+        elseif(auth()->user()->gender === 'Female'){$user = Users::where('gender', 'Male')->inRandomOrder()->first();}
 
 
         if ($user->id === auth()->user()->id) {return redirect()->route('home');}

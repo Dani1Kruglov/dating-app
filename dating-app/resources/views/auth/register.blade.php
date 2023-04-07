@@ -85,8 +85,8 @@
 
                             <div class="col-md-6">
                                 <select  required autocomplete="gender" class="form-select" aria-label="Default select example" name="gender" id="validationCustom02" >
-                                    <option value="Мужчина" >Мужчина </option>
-                                    <option value="Женщина">Женщина</option>
+                                    <option value="Male" >Мужчина </option>
+                                    <option value="Female">Женщина</option>
                                 </select>
                             </div>
                         </div>
