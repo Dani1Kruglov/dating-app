@@ -21,8 +21,7 @@ Auth::routes(['verify'=>true]);
 
 
 Route::group(['middleware'=>'allRoles', 'verified'], function (){
-    Route::match(['get', 'post'],'/home', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::match(['get', 'post'],'/', 'HomeController@index')->name('home');
     Route::get('/home/{user}/dislike', 'UpdateDislikesOrLikesController@updateDislikes')->name('dislikes.update');
     Route::get('/home/{user}/like', 'UpdateDislikesOrLikesController@updateLikes')->name('likes.update');
     Route::get('/my_profile', 'MyPageController')->name('my.page');
@@ -35,6 +34,4 @@ Route::group(['namespace'=>'Auth'], function () {
     Route::match(['get', 'post'], '/check_account', 'CheckController')->name('check.account');
     Route::post('/restore_account', 'RestoreController@restoreAccount')->name('restore.account');
     Route::post('/force_delete_account', 'RestoreController@forceDeleteAccount')->name('force.delete.account');
-
 });
-

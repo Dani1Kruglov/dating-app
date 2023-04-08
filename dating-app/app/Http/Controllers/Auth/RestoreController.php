@@ -10,7 +10,7 @@ class RestoreController extends Controller
     public function restoreAccount()
     {
         Users::where('email', $_POST['email'])->restore();
-        return redirect()->route('login');//не хочет перекидывать на логин роут
+        return view('auth.login');
     }
     public function forceDeleteAccount()
     {
