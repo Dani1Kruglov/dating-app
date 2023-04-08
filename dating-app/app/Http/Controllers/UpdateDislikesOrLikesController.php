@@ -6,7 +6,7 @@ use App\Http\Requests\MyPageUpdateRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class UpdateDislikesOrLikesController extends Controller
 {
 
     public function updateLikes(Users $user)

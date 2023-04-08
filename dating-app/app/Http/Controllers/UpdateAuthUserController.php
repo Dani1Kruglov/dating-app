@@ -6,7 +6,7 @@ use App\Http\Requests\MyPageUpdateRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
-class UpdateController extends Controller
+class UpdateAuthUserController extends Controller
 {
     public function __invoke(Users $user, MyPageUpdateRequest $request)
     {

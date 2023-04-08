@@ -4,7 +4,17 @@
     <div class="row">
         @include('includes.sidebar')
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class="card" style="height: 650px; width: 400px; margin-left: 500px; margin-top: 50px">
+            <div style="margin-top: 50px; margin-left: 70px">
+                Искать:
+                <form action="{{route('home')}}" method="post">
+                    @csrf
+                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="female">Девушку</button>
+                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="male">Мужчину</button>
+                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="All">Без разницы</button>
+                </form>
+            </div>
+
+            <div class="card" style="height: 650px; width: 400px; margin-left: 500px;">
                 <img src="https://i.pinimg.com/736x/df/6a/3f/df6a3f7f3023f8dfc4f6248ccedf268d.jpg" class="card-img-top" style="height: 400px; width: 400px">
                 <div class="card-body">
                     <h5 class="card-title">{{$user->name}}</h5>

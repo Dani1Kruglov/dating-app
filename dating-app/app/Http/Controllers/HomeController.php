@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class HomeController extends Controller
 {
@@ -19,14 +20,36 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (auth()->user()->gender === 'Male') {$user = Users::where('gender', 'Female')->inRandomOrder()->first();}
-        elseif(auth()->user()->gender === 'Female'){$user = Users::where('gender', 'Male')->inRandomOrder()->first();}
+        if (isset($_POST['userFilter']))
+        {
+            //доработать фильтрацию по выборке гендера который нужен (также в homepage.blade.php)
+            if ($_POST['userFilter'] === 'male')
+            {
+                dump($_POST['userFilter']);
+                $user = Users::where('gender', 'male')->inRandomOrder()->first();
+            }
+            if ($_POST['userFilter'] === 'female')
+            {
+                dump($_POST['userFilter']);
+                $user = Users::where('gender', 'female')->inRandomOrder()->first();
+            }
+            if ($_POST['userFilter'] === 'All')
+            {
+                dump($_POST['userFilter']);
+                $user = Users::inRandomOrder()->first();
+            }
+        }
+        else
+        {
+            if (auth()->user()->gender === 'male') {$user = Users::where('gender', 'female')->inRandomOrder()->first();}
+            elseif(auth()->user()->gender === 'female'){$user = Users::where('gender', 'male')->inRandomOrder()->first();}
+        }
 
 
         if ($user->id === auth()->user()->id) {return redirect()->route('home');}
 
 
 
-        return view('index', compact('user'));
+        return view('homepage', compact('user'));
     }
 }

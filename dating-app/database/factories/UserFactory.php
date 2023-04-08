@@ -20,7 +20,7 @@ class UserFactory extends Factory
     {
 
         $birthDate=fake()->date();
-        $gender= fake()->randomElement(['Male', 'Female']);
+        $gender= fake()->randomElement(['male', 'female']);
         $age = Carbon::parse($birthDate)->diffInYears();
 
         return [
