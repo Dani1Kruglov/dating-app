@@ -17,8 +17,9 @@ class MyPageController extends Controller
 
         if (isset(auth()->user()->email_verified_at)) {$verification = 'Пройдена';}
         else{$verification ='Не пройдена';}
+        $tags = $user->tags;
 
-        return view('mypage', compact('user', 'rating', 'verification'));
+        return view('mypage', compact('user', 'rating', 'verification', 'tags'));
 
     }
 }

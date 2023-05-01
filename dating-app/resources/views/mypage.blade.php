@@ -84,7 +84,7 @@
                         <div class="tab-pane fade active in" id="detail">
                             <h4>История профиля</h4>
                             <table class="table table-th-block">
-                                <tbody>
+                                <tr>
                                 <tr><td class="active">Зарегистрирован:</td><td>{{$user->created_at->toFormattedDateString()}}</td></tr>
                                 <tr><td class="active">Страна:</td><td>{{$user->country}}</td></tr>
                                 <tr><td class="active">Город:</td><td>{{$user->city}}</td></tr>
@@ -98,7 +98,14 @@
                                             {{$rating}}
                                     </td>
                                 </tr>
-                                <tr><td class="active">Верификация email</td><td>{{$verification}}</td>
+                                <tr><td class="active">Верификация email</td><td>{{$verification}}</td></tr>
+                                <tr><td class="active">Теги</td>
+                                    <td>
+                                @foreach($tags as $tag)
+                                        # {{$tag->title}}
+                                @endforeach
+                                    </td>
+                                </tr>
                                  </tbody>
                             </table>
                         </div>
