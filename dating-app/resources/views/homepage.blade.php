@@ -36,7 +36,7 @@
                     </a>
                     <div style="margin-top: 10px">
                         @foreach($tags as $tag)
-                            #{{$tag->title}}
+                            # {{$tag->title}}
                         @endforeach
                     </div>
                 </div>

@@ -54,6 +54,12 @@
             <option value="Замужем"> Замужем </option>
             <option value="В поиске"> В поиске </option>
         </select>
+        <select multiple class="form-control" id="tags" name="tags[]">
+            @foreach($tags as $tag)
+                <option value="{{$tag->id}}"># {{$tag->title}}</option>
+            @endforeach
+        </select>
+
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Update</button>
         </div>

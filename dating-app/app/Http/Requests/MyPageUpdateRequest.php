@@ -28,6 +28,7 @@ class MyPageUpdateRequest extends FormRequest
             'city'=>'string',
             'gender'=>'string',
             'family_status'=>'string',
+            'tags' => 'array'
         ];
     }
 }
