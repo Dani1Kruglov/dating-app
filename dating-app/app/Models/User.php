@@ -13,6 +13,11 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
+    protected $guarded = [];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'users_tags','user_id', 'tag_id');
+    }
 
     /**
      * The attributes that are mass assignable.

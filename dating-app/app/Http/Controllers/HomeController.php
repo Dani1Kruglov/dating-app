@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (isset($_POST['userFilter']))
+        /*if (isset($_POST['userFilter']))
         {
             //доработать фильтрацию по выборке гендера который нужен (также в homepage.blade.php)
             if ($_POST['userFilter'] === 'male')
@@ -38,12 +38,10 @@ class HomeController extends Controller
                 dump($_POST['userFilter']);
                 $user = Users::inRandomOrder()->first();
             }
-        }
-        else
-        {
-            if (auth()->user()->gender === 'male') {$user = Users::where('gender', 'female')->inRandomOrder()->first();}
-            elseif(auth()->user()->gender === 'female'){$user = Users::where('gender', 'male')->inRandomOrder()->first();}
-        }
+        }*/
+        if (auth()->user()->gender === 'male') {$user = Users::where('gender', 'female')->inRandomOrder()->first();}
+        elseif(auth()->user()->gender === 'female'){$user = Users::where('gender', 'male')->inRandomOrder()->first();}
+
 
 
         if ($user->id === auth()->user()->id) {return redirect()->route('home');}

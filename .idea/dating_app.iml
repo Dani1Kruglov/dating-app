@@ -6,8 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/dating-app/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/tests" isTestSource="true" packagePrefix="Tests\" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/container" />
@@ -121,6 +119,9 @@
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/storage/app" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/storage/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/_laravel_idea" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
