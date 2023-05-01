@@ -46,8 +46,10 @@ class HomeController extends Controller
 
         if ($user->id === auth()->user()->id) {return redirect()->route('home');}
 
+        $tags = $user->tags;
 
 
-        return view('homepage', compact('user'));
+
+        return view('homepage', compact('user', 'tags'));
     }
 }

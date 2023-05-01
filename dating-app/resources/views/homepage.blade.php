@@ -34,6 +34,11 @@
                             </svg>
                         </button>
                     </a>
+                    <div style="margin-top: 10px">
+                        @foreach($tags as $tag)
+                            #{{$tag->title}}
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
