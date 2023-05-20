@@ -126,6 +126,13 @@
       <path value="$PROJECT_DIR$/dating-app/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/dating-app/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/dating-app/vendor/_laravel_idea" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/laravel/breeze" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/tightenco/ziggy" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/inertiajs/inertia-laravel" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/paragonie/sodium_compat" />
+      <path value="$PROJECT_DIR$/dating-app/vendor/pusher/pusher-php-server" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

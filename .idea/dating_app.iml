@@ -6,6 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/dating-app/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/dating-app/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/container" />
@@ -122,6 +125,10 @@
       <excludeFolder url="file://$MODULE_DIR$/dating-app/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/_laravel_idea" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/league/flysystem-local" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/paragonie/sodium_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/pusher/pusher-php-server" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

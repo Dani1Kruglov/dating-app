@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::group(['middleware'=>'allRoles', 'verified'], function (){
     Route::get('/my_profile/{user}/edit', 'EditController')->name('my.page.edit');
     Route::patch('/my_profile/{user}', 'UpdateAuthUserController')->name('my.page.update');
     Route::delete('/my_profile/{user}', 'DestroyController')->name('my.page.destroy');
+    Route::get('/messages', 'MessageController@index')->name("messages");
+    Route::post('/messages', 'MessageController@store');
+
 });
 
 Route::group(['namespace'=>'Auth'], function () {
