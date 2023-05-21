@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
-use Illuminate\Http\Request;
-use Termwind\Components\Dd;
 
 class HomeController extends Controller
 {

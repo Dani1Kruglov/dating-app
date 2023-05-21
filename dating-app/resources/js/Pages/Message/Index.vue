@@ -11,7 +11,8 @@
         <h3>Messages</h3>
         <div>
             <div v-for="message in messages">
-                <p>{{message.id}}</p>
+                <p>От пользователя {{message.user_1_name}}</p>
+                <p>Пользователю {{message.user_2_name}}</p>
                 <p>{{message.body}}</p>
                 <p>{{message.time}}</p>
             </div>
@@ -40,7 +41,7 @@ export default {
     },
     methods:{
         store(){
-            axios.post('/messages', {body:this.body})
+            axios.post('/messages', {body:this.body, user_1_id: this.$page.props.messages[0].user_1_id, user_2_id: this.$page.props.messages[0].user_2_id})
                 .then(res=>{
                     this.messages.unshift(res.data)
                 })
@@ -52,4 +53,3 @@ export default {
 <style scoped>
 
 </style>
-
