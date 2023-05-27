@@ -19,8 +19,9 @@
 </head>
 <body style="">
 <header class="p-3 bg-dark text-white">
-    <a href="{{route('home')}}">Dating app</a>
-
+    <a href="{{route('home')}}">
+        <img src="{{asset('images/logo.png')}}" width="250px" height="58px">
+    </a>
     <div class="container">
         <div class="d-flex flex-wrap  justify-content-center justify-content-lg-start">
 
