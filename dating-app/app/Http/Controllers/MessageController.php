@@ -28,7 +28,7 @@ class MessageController extends Controller
         $message = Message::create([
             'user_1_id'=>$user_1_id,
             'user_2_id'=>$user_2_id,
-            'body'=>$data['body'],
+            'body'=>encrypt($data['body']),
         ]);
         broadcast(new StoreMessageEvent($message))->toOthers();
         return MessageResource::make($message)->resolve();

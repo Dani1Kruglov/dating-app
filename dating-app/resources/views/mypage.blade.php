@@ -41,8 +41,8 @@
         -o-border-radius: 4px;
         border-radius: 4px;
         border-bottom: 4px solid #ddd;
-        width: 1500px;
-       height: 700px">
+        width: 80%;
+       height: 50%">
 
     <div class="row" id="real-estates-detail">
         <div class="col-lg-4 col-md-4 col-xs-12">
@@ -106,7 +106,6 @@
                                 @endforeach
                                     </td>
                                 </tr>
-                                 </tbody>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="contact">

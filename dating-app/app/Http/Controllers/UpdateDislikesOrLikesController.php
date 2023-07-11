@@ -18,21 +18,18 @@ class UpdateDislikesOrLikesController extends Controller
         $user->update([
             'likes'=>$data,
         ]);
-        if (UserWithUser::where('user_1_id', auth()->user()->id)
-            ->where('user_2_id', $user->id)
-            ->where('is_like_from_user_1', true)
-            ->exists()) {
-        }
-        elseif  (UserWithUser::where('user_1_id', $user->id)->where('user_2_id', auth()->user()->id)->where('is_like_from_user_1', true)->exists()) {
+        if  (UserWithUser::where('user_1_id', $user->id)->where('user_2_id', auth()->user()->id)->where('is_like_from_user_1', true)->exists()) {
             UserWithUser::where([
                 'user_1_id'=>$user->id,
                 'user_2_id'=> auth()->user()->id,
                 'is_like_from_user_1'=> true,
             ])->update(['is_like_from_user_2' => true]);
+
+            $message = 'Вы понравились друг другу,начинайте общаться!';
             Message::create([
                 'user_1_id'=>auth()->user()->id,
                 'user_2_id'=>$user->id,
-                'body'=>'Вы понравились друг другу,начинайте общаться!'
+                'body'=>encrypt($message)
             ]);
         }else{
             UserWithUser::create([

@@ -19,7 +19,7 @@ class MessageResource extends JsonResource
         $user2 = Users::where('id', $this->user_2_id)->first();
         return [
             'id'=> $this->id,
-            'body'=>$this->body,
+            'body'=>decrypt($this->body),
             'user_1_id'=>$user1->id,
             'user_2_id'=>$user2->id,
             'user_1_name'=>$user1->name,
