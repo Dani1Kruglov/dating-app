@@ -19,8 +19,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (auth()->user()->gender === 'male') {$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'female')->inRandomOrder()->first();}
-        elseif(auth()->user()->gender === 'female'){$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'male')->inRandomOrder()->first();}
+
+        $user = $this->selectUser();
         $tags = $user->tags;
 
 
@@ -34,7 +34,10 @@ class HomeController extends Controller
         return view('homepage', compact('user', 'tags'));
     }
 
-    private function selectUser(){
-
+    public function selectUser(): Users
+    {
+        if (auth()->user()->gender === 'male') {$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'female')->inRandomOrder()->first();}
+        elseif(auth()->user()->gender === 'female'){$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'male')->inRandomOrder()->first();}
+        return $user;
     }
 }

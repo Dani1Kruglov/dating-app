@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 </head>
 
 <body >
@@ -73,7 +73,7 @@
     </main>
 </div>
 <div class="text-danger" style="margin-left: 300px">
-    Пароль для проверки:   7Ddf5VUgxF8u-Qc
+    Пароль для проверки:   7Ddf5VUgxF8uQc
 </div>
 </body>
 </html>

@@ -23,8 +23,8 @@ Auth::routes(['verify'=>true]);
 
 Route::group(['middleware'=>'allRoles', 'verified'], function (){
     Route::match(['get', 'post'],'/', 'HomeController@index')->name('home');
-    Route::get('/home/{user}/dislike', 'UpdateDislikesOrLikesController@updateDislikes')->name('dislikes.update');
-    Route::get('/home/{user}/like', 'UpdateDislikesOrLikesController@updateLikes')->name('likes.update');
+    Route::post('/home/{user}/dislike', 'UpdateDislikesOrLikesController@updateDislikes')->name('dislikes.update');
+    Route::post('/home/{user}/like', 'UpdateDislikesOrLikesController@updateLikes')->name('likes.update');
     Route::get('/my_profile', 'MyPageController')->name('my.page');
     Route::get('/my_profile/{user}/edit', 'EditController')->name('my.page.edit');
     Route::patch('/my_profile/{user}', 'UpdateAuthUserController')->name('my.page.update');

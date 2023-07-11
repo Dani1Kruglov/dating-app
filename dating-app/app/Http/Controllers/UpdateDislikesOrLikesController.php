@@ -8,7 +8,7 @@ use App\Models\Users;
 use App\Models\UserWithUser;
 use Illuminate\Http\Request;
 
-class UpdateDislikesOrLikesController extends Controller
+class UpdateDislikesOrLikesController extends HomeController
 {
 
     public function updateLikes(Users $user)
@@ -39,7 +39,11 @@ class UpdateDislikesOrLikesController extends Controller
                 'is_like_from_user_2'=>false,
             ]);
         }
-        return redirect()->route('home');
+
+        $user = $this->selectUser();
+        $tags = $user->tags;
+
+        return response()->json(['user' => $user, 'tags' => $tags]);
     }
     public function updateDislikes(Users $user)
     {
@@ -48,6 +52,12 @@ class UpdateDislikesOrLikesController extends Controller
         $user->update([
             'dislikes'=>$data,
         ]);
-        return redirect()->route('home');
+
+
+        $user = $this->selectUser();
+        $tags = $user->tags;
+
+
+        return response()->json(['user' => $user, 'tags' => $tags]);
     }
 }
