@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use App\Models\UserWithUser;
 
 class HomeController extends Controller
 {
@@ -18,36 +19,22 @@ class HomeController extends Controller
 
     public function index()
     {
-        /*if (isset($_POST['userFilter']))
-        {
-            //доработать фильтрацию по выборке гендера который нужен (также в homepage.blade.php)
-            if ($_POST['userFilter'] === 'male')
-            {
-                dump($_POST['userFilter']);
-                $user = Users::where('gender', 'male')->inRandomOrder()->first();
-            }
-            if ($_POST['userFilter'] === 'female')
-            {
-                dump($_POST['userFilter']);
-                $user = Users::where('gender', 'female')->inRandomOrder()->first();
-            }
-            if ($_POST['userFilter'] === 'All')
-            {
-                dump($_POST['userFilter']);
-                $user = Users::inRandomOrder()->first();
-            }
-        }*/
-        if (auth()->user()->gender === 'male') {$user = Users::where('gender', 'female')->inRandomOrder()->first();}
-        elseif(auth()->user()->gender === 'female'){$user = Users::where('gender', 'male')->inRandomOrder()->first();}
-
-
-
-        if ($user->id === auth()->user()->id) {return redirect()->route('home');}
-
+        if (auth()->user()->gender === 'male') {$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'female')->inRandomOrder()->first();}
+        elseif(auth()->user()->gender === 'female'){$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'male')->inRandomOrder()->first();}
         $tags = $user->tags;
+
+
+       // if ((UserWithUser::where('user_1_id', $user->id)->where('user_2_id', auth()->user()->id)->exists()) || (UserWithUser::where('user_1_id', auth()->user()->id)->where('user_2_id', $user->id)->exists())){ чтобы не показывались пользователи, с которыми уже проихошла взаимная симпатия
+        //Доработать ^
+
+
 
 
 
         return view('homepage', compact('user', 'tags'));
+    }
+
+    private function selectUser(){
+
     }
 }

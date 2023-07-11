@@ -11,12 +11,18 @@ class UpdateAuthUserController extends Controller
 {
     public function __invoke(Users $user, MyPageUpdateRequest $request)
     {
+
         $data = $request->validated();
-        $tags = $data['tags'];
-        unset($data['tags']);
-        $user->update($data);
-        $user->tags()->detach();
-        $user->tags()->attach($tags);
+        if (!empty($data['tags'])){
+            $tags = $data['tags'];
+            unset($data['tags']);
+            $user->update($data);
+            $user->tags()->detach();
+            $user->tags()->attach($tags);
+        }else{
+            $user->update($data);
+        }
+
         return redirect()->route('my.page');
     }
 }

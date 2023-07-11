@@ -45,8 +45,8 @@
             </div>
         </div>
         <select class="form-select" aria-label="Default select example" name="gender" id="validationCustom02" required value="{{$user->gender}}">
-            <option value="Мужчина">Мужчина </option>
-            <option value="Женщина">Женщина</option>
+            <option value="male">Мужчина </option>
+            <option value="female">Женщина</option>
         </select>
         <select class="form-select" aria-label="Default select example" name="family_status" id="validationCustom02" required value="{{$user->family_status}}">
             <option value="Свободен/на"> Свободен/на </option>
