@@ -19,25 +19,36 @@ class HomeController extends Controller
 
     public function index()
     {
-
-        $user = $this->selectUser();
+        $user_preferences = auth()->user()->user_preferences;
+        $user = $this->selectUser($user_preferences);
         $tags = $user->tags;
+
 
 
        // if ((UserWithUser::where('user_1_id', $user->id)->where('user_2_id', auth()->user()->id)->exists()) || (UserWithUser::where('user_1_id', auth()->user()->id)->where('user_2_id', $user->id)->exists())){ чтобы не показывались пользователи, с которыми уже проихошла взаимная симпатия
         //Доработать ^
 
-
-
-
-
         return view('homepage', compact('user', 'tags'));
     }
 
-    public function selectUser(): Users
+    protected function selectUser($user_preferences): Users
     {
-        if (auth()->user()->gender === 'male') {$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'female')->inRandomOrder()->first();}
-        elseif(auth()->user()->gender === 'female'){$user = Users::where('id', '!=', auth()->user()->id)->where('gender', 'male')->inRandomOrder()->first();}
-        return $user;
+        switch ($user_preferences){
+            case 'male':
+                return Users::where('id', '!=', auth()->user()->id)->where('gender', 'male')->where(function ($query) {
+                    $query->where('user_preferences', 'all')
+                        ->orWhere('user_preferences', auth()->user()->gender);})
+                    ->inRandomOrder()->first();
+            case 'female':
+                return Users::where('id', '!=', auth()->user()->id)->where('gender', 'female')->where(function ($query) {
+                    $query->where('user_preferences', 'all')
+                        ->orWhere('user_preferences', auth()->user()->gender);})
+                    ->inRandomOrder()->first();
+            default:
+                return Users::where('id', '!=', auth()->user()->id)->where(function ($query) {
+                    $query->where('user_preferences', 'all')
+                        ->orWhere('user_preferences', auth()->user()->gender);})
+                    ->inRandomOrder()->first();
+        }
     }
 }

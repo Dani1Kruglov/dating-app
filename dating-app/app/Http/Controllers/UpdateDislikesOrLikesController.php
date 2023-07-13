@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 class UpdateDislikesOrLikesController extends HomeController
 {
 
-    public function updateLikes(Users $user)
+    public function updateLikes(Users $user, Request $request)
     {
         $data = $user->likes;
         $data++;
+        $user_preferences = $request->input('user_preferences');
+        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $user_preferences]);
         $user->update([
             'likes'=>$data,
         ]);
@@ -40,21 +42,24 @@ class UpdateDislikesOrLikesController extends HomeController
             ]);
         }
 
-        $user = $this->selectUser();
+        $user = $this->selectUser($user_preferences);
         $tags = $user->tags;
 
         return response()->json(['user' => $user, 'tags' => $tags]);
     }
-    public function updateDislikes(Users $user)
+    public function updateDislikes(Users $user, Request $request)
     {
+
         $data = $user->dislikes;
         $data++;
+        $user_preferences = $request->input('user_preferences');
+        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $user_preferences]);
         $user->update([
             'dislikes'=>$data,
         ]);
 
 
-        $user = $this->selectUser();
+        $user = $this->selectUser($user_preferences);
         $tags = $user->tags;
 
 

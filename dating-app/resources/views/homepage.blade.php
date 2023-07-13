@@ -6,19 +6,44 @@
         @include('includes.sidebar')
         <div class="col" style="margin-top: 50px; margin-left: 70px;">
             <div>
-                Искать:
-                <form action="{{route('home')}}" method="post" style="width: 10%">
-                    @csrf
-                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="female"
-                            style="margin-bottom: 5%">Девушку
-                    </button>
-                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="male"
-                            style="margin-bottom: 5%">Мужчину
-                    </button>
-                    <button type="submit" name="userFilter" class="btn btn-outline-dark me-2" value="All"
-                            style="margin-bottom: 5%">Без разницы
-                    </button>
-                </form>
+                @switch(auth()->user()->user_preferences)
+                    @case('male')
+                        @php($valWoman = '')
+                        @php($valMan = 'checked')
+                        @php($valAll = '')
+                            @break
+                            @case('female')
+                                @php($valWoman = 'checked')
+                                @php($valMan = '')
+                                @php($valAll = '')
+                                @break
+                            @default
+                                @php($valWoman = '')
+                                @php($valMan = '')
+                                @php($valAll = 'checked')
+                            @endswitch
+
+
+                            Искать:
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="choice" value="male" id="flexRadioDefault1" {{$valMan}}>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Мужчину
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="choice" value="female" id="flexRadioDefault1" {{$valWoman}}>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Женщину
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="choice" value="all" id="flexRadioDefault1" {{$valAll}}>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Без разницы
+                    </label>
+                </div>
+                            <button type="button" class="filter-button btn btn-dark" style="margin-top: 4%">Сохранить</button>
             </div>
         </div>
 
@@ -85,13 +110,14 @@
             $('.like-button').on('click', function () {
                 var userId = $(this).data('user-id');
                 var currentButton = $(this);
-                console.log(userId);
-
+                var user_preferences = $("input[name='choice']:checked").val();
                 $.ajax({
                     url: "{{ route('likes.update', $user->id) }}".replace({{$user->id}}, userId),
                     method: "POST",
                     data: {
                         user: userId,
+                        user_preferences: user_preferences,
+
                     },
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
@@ -123,13 +149,15 @@
             $('.dislike-button').on('click', function () {
                 var userId = $(this).data('user-id');
                 var currentButton = $(this);
-                console.log(userId);
+                var user_preferences = $("input[name='choice']:checked").val();
+
 
                 $.ajax({
                     url: "{{ route('dislikes.update', $user->id) }}".replace({{$user->id}}, userId),
                     method: "POST",
                     data: {
                         user: userId,
+                        user_preferences: user_preferences,
                     },
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
@@ -152,6 +180,42 @@
                     },
                     error: function (xhr, status, error) {
                         console.log(error)
+                    }
+                });
+            });
+            $('.filter-button').on('click', function () {
+                var user_preferences = $("input[name='choice']:checked").val();
+                var currentButton = $(this);
+                $.ajax({
+                    url: "{{ route('user_preferences.update')}}",
+                    method: "POST",
+                    data: {
+                        user_preferences: user_preferences,
+
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function (response) {
+                        var user = response.user;
+                        var tags = response.tags;
+
+                        var tagContainer = $('<div>');
+                        tags.forEach(function (tag) {
+                            var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
+                            tagContainer.append(tagElement);
+                        });
+
+                        $('.tag-container').empty().append(tagContainer);
+
+                        $('.user-name').text(user.name);
+                        $('.user-bd').text(user.birth_date);
+                        $('.user-content').text(user.content);
+                        currentButton.data('user-id', user.id);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error)
+
                     }
                 });
             });

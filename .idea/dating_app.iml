@@ -7,8 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/dating-app/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/dating-app/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/container" />
@@ -133,5 +131,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="axios" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
   </component>
 </module>

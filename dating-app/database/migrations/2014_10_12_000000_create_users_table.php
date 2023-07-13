@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('role')->default('user');
             $table->date('birth_date');
-            $table->text('content')->default('О себе');
             $table->string('country')->default('Страна');
             $table->string('city')->default('Город');
             $table->string('family_status')->default('Свободен');
             $table->string('gender');
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('dislikes')->default(0);
+            $table->string('user_preferences')->default('all');
+            $table->text('content')->default('О себе');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->softDeletes();
