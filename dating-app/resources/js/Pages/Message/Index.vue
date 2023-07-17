@@ -1,24 +1,29 @@
 <template>
-    <div class="w-1/2 mx-auto py-6">
-        <div>
-            <div class="mb-4">
-                <input type="text" v-model="body" class="rounded-full border">
+    <body>
+    <h3>Chat</h3>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="input-group">
+                    <input type="text" v-model="body" class="form-control" placeholder="Type your message">
+                    <div class="input-group-append">
+                        <a @click.prevent="store" href="#" class="rounded-lg block w-48" style="text-decoration: none; color: white">
+                            <button class="btn btn-primary" type="button">Send</button>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="mb-4">
-                <a @click.prevent="store" href="#" class="rounded-lg block w-48">Send</a>
+            <div class="card-body" id="chatBody">
+                <div v-for="message in messages">
+                    <h5>От пользователя: {{message.user_1_name}}</h5>
+                    <h5>Пользователю: {{message.user_2_name}}</h5>
+                    <p style="color: deeppink">{{message.body}}</p>
+                    <p>{{message.time}}</p>
+                </div>
             </div>
         </div>
-        <h3>Messages</h3>
-        <div>
-            <div v-for="message in messages">
-                <p>От пользователя {{message.user_1_name}}</p>
-                <p>Пользователю {{message.user_2_name}}</p>
-                <p>{{message.body}}</p>
-                <p>{{message.time}}</p>
-            </div>
-        </div>
-
     </div>
+    </body>
 </template>
 
 <script>

@@ -15,8 +15,8 @@ class UpdateDislikesOrLikesController extends HomeController
     {
         $data = $user->likes;
         $data++;
-        $user_preferences = $request->input('user_preferences');
-        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $user_preferences]);
+        $userPreferences = $request->input('user_preferences');
+        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $userPreferences]);
         $user->update([
             'likes'=>$data,
         ]);
@@ -42,7 +42,8 @@ class UpdateDislikesOrLikesController extends HomeController
             ]);
         }
 
-        $user = $this->selectUser($user_preferences);
+        $idsOfUsersWithSympathy = $this->takeIdOfUsersWithSympathy();
+        $user = $this->selectUser($userPreferences, $idsOfUsersWithSympathy);
         $tags = $user->tags;
 
         return response()->json(['user' => $user, 'tags' => $tags]);
@@ -52,14 +53,15 @@ class UpdateDislikesOrLikesController extends HomeController
 
         $data = $user->dislikes;
         $data++;
-        $user_preferences = $request->input('user_preferences');
-        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $user_preferences]);
+        $userPreferences = $request->input('user_preferences');
+        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $userPreferences]);
         $user->update([
             'dislikes'=>$data,
         ]);
 
 
-        $user = $this->selectUser($user_preferences);
+        $idsOfUsersWithSympathy = $this->takeIdOfUsersWithSympathy();
+        $user = $this->selectUser($userPreferences, $idsOfUsersWithSympathy);
         $tags = $user->tags;
 
 

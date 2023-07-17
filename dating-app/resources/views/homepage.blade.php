@@ -4,6 +4,8 @@
 
     <div class="row">
         @include('includes.sidebar')
+        //кончились пользователи
+        @if($user[0] !== 'empty')
         <div class="col" style="margin-top: 50px; margin-left: 70px;">
             <div>
                 @switch(auth()->user()->user_preferences)
@@ -46,8 +48,7 @@
                             <button type="button" class="filter-button btn btn-dark" style="margin-top: 4%">Сохранить</button>
             </div>
         </div>
-
-        <div class="col" style="margin-left: 5%; margin-top: 50px">
+        <div class="col" style="margin-right: 35%; margin-top: 50px">
             <div class="card" style="height: 650px; width: 400px;">
                 <img src="https://i.pinimg.com/736x/df/6a/3f/df6a3f7f3023f8dfc4f6248ccedf268d.jpg" class="card-img-top"
                      style="height: 400px; width: 400px">
@@ -85,7 +86,7 @@
                             </div>
                         </div>
 
-                        <button class="like-button btn btn-outline-success" type="submit" data-user-id="{{ $user->id }}" style="margin-left: 50%">
+                        <button  id="like-element" class="like-button btn btn-outline-success" type="submit" data-user-id="{{ $user->id }}" style="margin-left: 50%">
                         <span class="PostBottomAction__icon _like_button_icon" aria-hidden="true"><div
                                 class="PostButtonReactions__icon" data-section-ref="reactions-button-icon"
                                 aria-label="Нравится" style=""><svg height="24" viewBox="0 0 24 24" width="24"
@@ -102,125 +103,139 @@
                 </div>
             </div>
         </div>
+            <script>
+
+                $(document).ready(function () {
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    var userId = $('#like-element').data('user-id');
+
+                    $('.like-button').on('click', function () {
+                        var currentButton = $(this);
+                        var user_preferences = $("input[name='choice']:checked").val();
+                        $.ajax({
+                            url: "{{ route('likes.update', $user->id) }}".replace({{$user->id}}, userId),
+                            method: "POST",
+                            data: {
+                                user: userId,
+                                user_preferences: user_preferences,
+
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            success: function (response) {
+
+                                var user = response.user;
+                                var tags = response.tags;
+
+                                var tagContainer = $('<div>');
+                                tags.forEach(function (tag) {
+                                    var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
+                                    tagContainer.append(tagElement);
+                                });
+
+                                userId = user.id;
+                                $('.tag-container').empty().append(tagContainer);
+                                $('.user-name').text(user.name);
+                                $('.user-bd').text(user.birth_date);
+                                $('.user-content').text(user.content);
+                                currentButton.data('user-id', user.id);
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(error)
+
+                            }
+                        });
+                    });
+                    $('.dislike-button').on('click', function () {
+                        var currentButton = $(this);
+                        var user_preferences = $("input[name='choice']:checked").val();
+
+
+                        $.ajax({
+                            url: "{{ route('dislikes.update', $user->id) }}".replace({{$user->id}}, userId),
+                            method: "POST",
+                            data: {
+                                user: userId,
+                                user_preferences: user_preferences,
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            success: function (response) {
+                                var user = response.user;
+                                var tags = response.tags;
+
+                                var tagContainer = $('<div>');
+                                tags.forEach(function (tag) {
+                                    var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
+                                    tagContainer.append(tagElement);
+                                });
+
+                                userId = user.id;
+                                $('.tag-container').empty().append(tagContainer);
+                                $('.user-name').text(user.name);
+                                $('.user-bd').text(user.birth_date);
+                                $('.user-content').text(user.content);
+                                currentButton.data('user-id', user.id);
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(error)
+                            }
+                        });
+                    });
+                    $('.filter-button').on('click', function () {
+                        var user_preferences = $("input[name='choice']:checked").val();
+                        var currentButton = $(this);
+                        $.ajax({
+                            url: "{{ route('user_preferences.update')}}",
+                            method: "POST",
+                            data: {
+                                user_preferences: user_preferences,
+
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            success: function (response) {
+                                var user = response.user;
+                                var tags = response.tags;
+
+                                var tagContainer = $('<div>');
+                                tags.forEach(function (tag) {
+                                    var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
+                                    tagContainer.append(tagElement);
+                                });
+
+
+                                userId = user.id;
+                                $('.tag-container').empty().append(tagContainer);
+
+                                $('.user-name').text(user.name);
+                                $('.user-bd').text(user.birth_date);
+                                $('.user-content').text(user.content);
+                                currentButton.data('user-id', user.id);
+                                currentButton.removeData('user-id');
+
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(error)
+
+                            }
+                        });
+                    });
+                });
+
+            </script>
+        @else//кончились пользователи
+            <div class="col" style="margin-left: 20px;">
+                <div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+                    <h1 class="text-primary">Нет пользователей</h1>
+                    <p class="lead mt-4">Приходите позднее</p>
+                </div>
+            </div>
+        @endif
     </div>
 
-    <script>
-        $(document).ready(function () {
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            $('.like-button').on('click', function () {
-                var userId = $(this).data('user-id');
-                var currentButton = $(this);
-                var user_preferences = $("input[name='choice']:checked").val();
-                $.ajax({
-                    url: "{{ route('likes.update', $user->id) }}".replace({{$user->id}}, userId),
-                    method: "POST",
-                    data: {
-                        user: userId,
-                        user_preferences: user_preferences,
-
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function (response) {
-
-                        var user = response.user;
-                        var tags = response.tags;
-
-                        var tagContainer = $('<div>');
-                        tags.forEach(function (tag) {
-                            var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
-                            tagContainer.append(tagElement);
-                        });
-
-                        $('.tag-container').empty().append(tagContainer);
-
-                        $('.user-name').text(user.name);
-                        $('.user-bd').text(user.birth_date);
-                        $('.user-content').text(user.content);
-                        currentButton.data('user-id', user.id);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error)
-
-                    }
-                });
-            });
-            $('.dislike-button').on('click', function () {
-                var userId = $(this).data('user-id');
-                var currentButton = $(this);
-                var user_preferences = $("input[name='choice']:checked").val();
-
-
-                $.ajax({
-                    url: "{{ route('dislikes.update', $user->id) }}".replace({{$user->id}}, userId),
-                    method: "POST",
-                    data: {
-                        user: userId,
-                        user_preferences: user_preferences,
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function (response) {
-                        var user = response.user;
-                        var tags = response.tags;
-
-                        var tagContainer = $('<div>');
-                        tags.forEach(function (tag) {
-                            var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
-                            tagContainer.append(tagElement);
-                        });
-
-                        $('.tag-container').empty().append(tagContainer);
-                        $('.user-name').text(user.name);
-                        $('.user-bd').text(user.birth_date);
-                        $('.user-content').text(user.content);
-                        currentButton.data('user-id', user.id);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error)
-                    }
-                });
-            });
-            $('.filter-button').on('click', function () {
-                var user_preferences = $("input[name='choice']:checked").val();
-                var currentButton = $(this);
-                $.ajax({
-                    url: "{{ route('user_preferences.update')}}",
-                    method: "POST",
-                    data: {
-                        user_preferences: user_preferences,
-
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function (response) {
-                        var user = response.user;
-                        var tags = response.tags;
-
-                        var tagContainer = $('<div>');
-                        tags.forEach(function (tag) {
-                            var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
-                            tagContainer.append(tagElement);
-                        });
-
-                        $('.tag-container').empty().append(tagContainer);
-
-                        $('.user-name').text(user.name);
-                        $('.user-bd').text(user.birth_date);
-                        $('.user-content').text(user.content);
-                        currentButton.data('user-id', user.id);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error)
-
-                    }
-                });
-            });
-        });
-
-    </script>
 
 @endsection

@@ -9,9 +9,10 @@ class UsersFilterController extends HomeController
 {
     public function __invoke(Request $request)
     {
-        $user_preferences = $request->input('user_preferences');
-        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $user_preferences]);
-        $user = $this->selectUser($user_preferences);
+        $userPreferences = $request->input('user_preferences');
+        Users::where('id', auth()->user()->id)->update(['user_preferences'=> $userPreferences]);
+        $idsOfUsersWithSympathy = $this->takeIdOfUsersWithSympathy();
+        $user = $this->selectUser($userPreferences, $idsOfUsersWithSympathy);
         $tags = $user->tags;
         return response()->json(['user' => $user, 'tags' => $tags]);
     }

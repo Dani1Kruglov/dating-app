@@ -30,6 +30,7 @@ Route::group(['middleware'=>'allRoles', 'verified'], function (){
     Route::get('/my_profile/{user}/edit', 'EditController')->name('my.page.edit');
     Route::patch('/my_profile/{user}', 'UpdateAuthUserController')->name('my.page.update');
     Route::delete('/my_profile/{user}', 'DestroyController')->name('my.page.destroy');
+    Route::get('/all_messages', 'AllChatsController')->name("all.chats");
     Route::get('/messages', 'MessageController@index')->name("messages");
     Route::post('/messages', 'MessageController@store');
 
