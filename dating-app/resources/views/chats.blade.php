@@ -14,9 +14,7 @@
                             <div class="col-md-4" style="width: 86%; height: 7%">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h5 class="card-title">Chat with</h5>
-                                        {{$chat->user_2_id}}
-                                        <p class="card-text">This is chat 1.</p>
+                                        <h5 class="card-title">Chat with {{$chat->user_2_name}}</h5>
                                         <a href="{{route('messages', $chat->user_2_id)}}" class="btn btn-primary">View Chat</a>
                                     </div>
                                 </div>
@@ -25,9 +23,7 @@
                             <div class="col-md-4" style="width: 86%; height: 7%">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h5 class="card-title">Chat </h5>
-                                        {{$chat->user_1_id}}
-                                        <p class="card-text">This is chat 1.</p>
+                                        <h5 class="card-title">Chat with {{$chat->user_1_name}}</h5>
                                         <a href="{{route('messages', $chat->user_1_id)}}" class="btn btn-primary">View Chat</a>
                                     </div>
                                 </div>
