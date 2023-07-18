@@ -24,6 +24,8 @@ class StoreRequest extends FormRequest
         return [
             'user_1_id'=> 'required|integer',
             'user_2_id'=> 'required|integer',
+            'private_channel' =>'required|integer',
+            'hash_private_channel' =>'required|string',
             'body' => 'required|string'
         ];
     }

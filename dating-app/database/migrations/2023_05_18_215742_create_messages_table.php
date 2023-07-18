@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_1_id')->constrained('users');
             $table->foreignId('user_2_id')->constrained('users');
+            $table->string('private_channel');
             $table->text('body');
             $table->timestamps();
         });

@@ -39,14 +39,15 @@ export default {
     },
 
     created() {
-        window.Echo.channel('store_message')
+        window.Echo.channel(`store_message_${this.$page.props.messages[0].private_channel}`)
             .listen('.store_message', res=>{
+                console.log(res)
                 this.messages.unshift(res.message)
             })
     },
     methods:{
         store(){
-            axios.post('/messages', {body:this.body, user_1_id: this.$page.props.messages[0].user_1_id, user_2_id: this.$page.props.messages[0].user_2_id})
+            axios.post('/messages', {body:this.body, user_1_id: this.$page.props.messages[0].user_1_id, user_2_id: this.$page.props.messages[0].user_2_id, private_channel: this.$page.props.messages[0].private_channel, hash_private_channel: this.$page.props.messages[0].hash_private_channel})
                 .then(res=>{
                     this.messages.unshift(res.data)
                 })
@@ -58,3 +59,4 @@ export default {
 <style scoped>
 
 </style>
+

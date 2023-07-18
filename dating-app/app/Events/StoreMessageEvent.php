@@ -17,14 +17,15 @@ class StoreMessageEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     private Message $message;
+    private int $privateChannel;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(Message $message)
+    public function __construct(Message $message, string $hashPrivateChannel)
     {
-        //
         $this->message = $message;
+        $this->privateChannel =  decrypt($hashPrivateChannel);
     }
 
     /**
@@ -35,7 +36,7 @@ class StoreMessageEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('store_message'),
+            new Channel('store_message_'.$this->privateChannel),
         ];
     }
 
@@ -60,3 +61,4 @@ class StoreMessageEvent implements ShouldBroadcast
     }
 
 }
+

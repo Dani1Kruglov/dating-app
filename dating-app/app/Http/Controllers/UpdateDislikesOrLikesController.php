@@ -28,9 +28,11 @@ class UpdateDislikesOrLikesController extends HomeController
             ])->update(['is_like_from_user_2' => true]);
 
             $message = 'Вы понравились друг другу,начинайте общаться!';
+            $privateChannel =  auth()->user()->id . $user->id;
             Message::create([
                 'user_1_id'=>auth()->user()->id,
                 'user_2_id'=>$user->id,
+                'private_channel'=> encrypt((int)$privateChannel),
                 'body'=>encrypt($message)
             ]);
         }else{
