@@ -12,8 +12,12 @@ class UsersFilterController extends HomeController
         $userPreferences = $request->input('user_preferences');
         Users::where('id', auth()->user()->id)->update(['user_preferences'=> $userPreferences]);
         $idsOfUsersWithSympathy = $this->takeIdOfUsersWithSympathy();
-        $user = $this->selectUser($userPreferences, $idsOfUsersWithSympathy);
-        $tags = $user->tags;
-        return response()->json(['user' => $user, 'tags' => $tags]);
+        $nextUser = $this->selectUser($userPreferences, $idsOfUsersWithSympathy);
+        if (($nextUser->id === auth()->user()->id)){
+            $description = 'Нет пользователей';
+            return response()->json(['description' => $description]);
+        }
+        $tags = $nextUser->tags;
+        return response()->json(['user' => $nextUser, 'tags' => $tags]);
     }
 }

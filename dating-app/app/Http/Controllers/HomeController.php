@@ -23,25 +23,23 @@ class HomeController extends Controller
         $userPreferences = auth()->user()->user_preferences;
         $idsOfUsersWithSympathy = $this->takeIdOfUsersWithSympathy();
         $user = $this->selectUser($userPreferences,  $idsOfUsersWithSympathy);
-        /*if ($user[0] === 'empty'){//кончились пользователи
-            $tags = [0];
-            return view('homepage', compact('user', 'tags'));
-        }*/
+       if (($user->id === auth()->user()->id)){
+            return view('homepage', compact('user',));
+        }
         $tags = $user->tags;
-
         return view('homepage', compact('user', 'tags'));
     }
 
-    protected function selectUser($userPreferences,  $idsOfUsersWithSympathy):Users
+    protected function selectUser($userPreferences,  $idsOfUsersWithSympathy)
     {
         if ($userPreferences === 'all'){
             $user = Users::where('id', '!=', auth()->user()->id)->whereNotIn('id', $idsOfUsersWithSympathy)->where(function ($query) {
                 $query->where('user_preferences', 'all')
                     ->orWhere('user_preferences', auth()->user()->gender);})
                 ->inRandomOrder()->first();
-            /*if (empty($user)){//кончились пользователи
-                $user = ['empty'];
-            }*/
+            if (empty($user)){
+                return Users::where('id', auth()->user()->id)->first();
+            }
             return $user;
         }
 
@@ -49,9 +47,9 @@ class HomeController extends Controller
             $query->where('user_preferences', 'all')
                 ->orWhere('user_preferences', auth()->user()->gender);})
             ->inRandomOrder()->first();
-        /*if (empty($user)){//кончились пользователи
-            $user = ['empty'];
-        }*/
+        if (empty($user)){
+            return Users::where('id', auth()->user()->id)->first();
+        }
         return $user;
 
     }
@@ -72,6 +70,10 @@ class HomeController extends Controller
             }else{
                 $idsOfUsersWithSympathy[] = $userWithSympathyFromUser->user_1_id;
             }
+        }
+
+        if (empty($idsOfUsersWithSympathy)){
+            $idsOfUsersWithSympathy[] = auth()->user()->id;
         }
         return $idsOfUsersWithSympathy;
     }
