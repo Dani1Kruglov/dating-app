@@ -157,7 +157,7 @@
                 </div>
             </div>
         @endif
-            <div class="description col" style="margin-right: 30%;">
+            <div class="description col" style="margin-right: 30%; display: none" >
                 <div class="container d-flex flex-column align-items-center justify-content-center vh-100">
                     <h1 class="text-primary">Нет пользователей</h1>
                     <p class="lead mt-4">Приходите позднее</p>
