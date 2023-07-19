@@ -16,10 +16,16 @@ class AllChatsController extends Controller
         foreach ($chats as $chat){
             if ($chat->user_1_id !== auth()->user()->id){
                 $user = Users::where('id', $chat->user_1_id)->first();
-                $chat['user_1_name'] = $user->name;
+                $chat['auth_user_id'] = auth()->user()->id;
+                $chat['interlocutor_id'] = $user->id;
+                $chat['interlocutor_name'] = $user->name;
+                $chat['interlocutor_image'] = $user->image;
             }else{
                 $user = Users::where('id', $chat->user_2_id)->first();
-                $chat['user_2_name'] = $user->name;
+                $chat['auth_user_id'] = auth()->user()->id;
+                $chat['interlocutor_id'] = $user->id;
+                $chat['interlocutor_name'] = $user->name;
+                $chat['interlocutor_image'] = $user->image;
             }
         }
         return view('chats', compact('chats'));
