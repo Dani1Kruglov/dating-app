@@ -73,7 +73,6 @@
     </main>
 </div>
 <div class="text-danger" style="margin-left: 300px">
-    Пароль для проверки:   7Ddf5VUgxF8uQc
 </div>
 </body>
 </html>
