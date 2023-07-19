@@ -42,8 +42,8 @@
 
             <div class="dropdown" style="margin-left: 20px">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img src="https://sun9-45.userapi.com/impg/zWExPHeXVc_65219zmjjpCL1nnUd_L-KubnMVQ/5vTCq1OyoRA.jpg?size=1979x2160&quality=96&sign=a14d6474f26046615a90a0630bf9ce7d&type=album" alt="" width="32" height="32" class="rounded-circle me-2">
-                    {{ Auth::user()->name }}
+                    <img  alt="" width="45" height="45" class="rounded-circle me-2" src="{{asset('/storage/' . auth()->user()->image)}}" style="object-fit: cover;">
+                     {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('my.page')}}">

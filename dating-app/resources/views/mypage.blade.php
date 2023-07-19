@@ -56,7 +56,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="text-center" id="author">
-                        <img style="height: 300px; width: 300px" src="https://sun9-45.userapi.com/impg/zWExPHeXVc_65219zmjjpCL1nnUd_L-KubnMVQ/5vTCq1OyoRA.jpg?size=1979x2160&quality=96&sign=a14d6474f26046615a90a0630bf9ce7d&type=album">
+                        <img class="img-fluid" src="{{asset('/storage/' . $user->image)}}" style="object-fit: cover; width: 150px; height: 150px;" alt="">
                         <h3>{{$user->name}}</h3>
                         <p>{{$user->content}}</p>
                         <p class="sosmed-author">

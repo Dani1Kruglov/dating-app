@@ -17,7 +17,7 @@ class MyPageUpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
@@ -26,6 +26,8 @@ class MyPageUpdateRequest extends FormRequest
             'content'=>'string',
             'country'=>'string',
             'city'=>'string',
+            'image' => 'image',
+            'imageDelete' => 'integer',
             'gender'=>'string',
             'family_status'=>'string',
             'tags' => 'array'

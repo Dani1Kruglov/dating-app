@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="row g-3 needs-validation" action="{{route('my.page.update', $user->id)}}" novalidate method="post" style="margin-left: 25%; margin-top: 80px">
+    <form class="row g-3 needs-validation" action="{{route('my.page.update', $user->id)}}" enctype="multipart/form-data" novalidate method="post" style="margin-left: 25%; margin-top: 80px">
         @csrf
         @method('patch')
         <div class="col-md-4">
@@ -42,6 +42,17 @@
             @enderror
             <div class="valid-feedback">
                 Все хорошо!
+            </div>
+        </div>
+        <div class="input-group" style="margin-top: 50px; width: 800px">
+            <input type="file" name="image" class="form-control" id="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        </div>
+        <div style="margin-right: 10px ">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="imageDelete" id="option1" value="{{1}}" >
+                <label class="form-check-label" for="option1">
+                    Удалить фото
+                </label>
             </div>
         </div>
         <select class="form-select" aria-label="Default select example" name="gender" id="validationCustom02" required value="{{$user->gender}}">

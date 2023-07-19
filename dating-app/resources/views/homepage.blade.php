@@ -49,7 +49,7 @@
         @if($user->id===auth()->user()->id)
             <div class="card-block col" style="margin-right: 35%; margin-top: 50px">
                 <div class="card" id="card" style="height: 650px; width: 400px;">
-                    <img class="user-img" src="https://w7.pngwing.com/pngs/67/675/png-transparent-account-avatar-man-person-profile-business-and-marketing-icon.png"
+                    <img class="user-img" src="{{asset('/storage/uploads/anonym.jpg')}}"
                          style="height: 400px; width: 400px" >
                     <div class="card-body">
                         <h5 class="user-name">Пользователей больше нет</h5>
@@ -104,8 +104,7 @@
         @else
             <div class="card-block col" style="margin-right: 35%; margin-top: 50px">
                 <div class="card" id="card" style="height: 650px; width: 400px;">
-                    <img src="https://i.pinimg.com/736x/df/6a/3f/df6a3f7f3023f8dfc4f6248ccedf268d.jpg" class="card-img-top"
-                         style="height: 400px; width: 400px">
+                    <img class="user-img" src="{{asset('/storage/' . $user->image)}}"  style="height: 400px; width: 400px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="user-name">{{$user->name}}</h5>
                         <p class="user-bd">{{$user->birth_date}}</p>
@@ -199,6 +198,9 @@
                             });
 
                             userId = user.id;
+                            var imagePath = '/storage/' + user.image
+
+                            $('.user-img').attr('src', imagePath)
                             $('.tag-container').empty().append(tagContainer);
                             $('.user-name').text(user.name);
                             $('.user-bd').text(user.birth_date);
@@ -216,6 +218,7 @@
                     }
                 });
             });
+
             $('.dislike-button').on('click', function () {
                 var currentButton = $(this);
                 var user_preferences = $("input[name='choice']:checked").val();
@@ -238,8 +241,9 @@
                             $('.filter').show();
                             $('.description').hide();
                             var user = response.user;
-                            var tags = response.tags;
 
+
+                            var tags = response.tags;
                             var tagContainer = $('<div>');
                             tags.forEach(function (tag) {
                                 var tagElement = $('<div class="tag-title">#' + tag.title + '</div>');
@@ -247,6 +251,9 @@
                             });
 
                             userId = user.id;
+                            var imagePath = '/storage/' + user.image
+
+                            $('.user-img').attr('src', imagePath)
                             $('.tag-container').empty().append(tagContainer);
                             $('.user-name').text(user.name);
                             $('.user-bd').text(user.birth_date);
@@ -262,6 +269,8 @@
                     }
                 });
             });
+
+
             $('.filter-button').on('click', function () {
                 var user_preferences = $("input[name='choice']:checked").val();
                 var currentButton = $(this);
@@ -292,7 +301,9 @@
 
 
                             userId = user.id;
-                            $('.user-img').attr('src', 'https://i.pinimg.com/736x/df/6a/3f/df6a3f7f3023f8dfc4f6248ccedf268d.jpg');
+                            var imagePath = '/storage/' + user.image
+
+                            $('.user-img').attr('src', imagePath)
                             $('.tag-container').empty().append(tagContainer);
                             $('.user-name').text(user.name);
                             $('.user-bd').text(user.birth_date);

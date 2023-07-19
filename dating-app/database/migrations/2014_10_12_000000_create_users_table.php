@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->mediumInteger('age');
             $table->string('email')->unique();
+            $table->string('image')->default('uploads/anonym.jpg');
             $table->string('role')->default('user');
             $table->date('birth_date');
             $table->string('country')->default('Страна');
