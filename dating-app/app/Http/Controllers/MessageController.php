@@ -16,8 +16,14 @@ class MessageController extends Controller
         orWhere(function ($query) use($userId){
             $query->where('user_2_id', $userId)->where('user_1_id', auth()->user()->id);})
             ->latest()->get();
+
+        $user = Users::where('id', (int)$userId)->first();
+        $interlocutor[0]['interlocutor_id'] = $user->id;
+        $interlocutor[0]['interlocutor_name'] = $user->name;
+        $interlocutor[0]['interlocutor_image'] = $user->image;
+        $interlocutor = MessageResource::collection($interlocutor)->resolve();
         $messages = MessageResource::collection($messages)->resolve();
-        return inertia('Message/Index', compact('messages'));
+        return inertia('Message/Index', compact('messages', 'interlocutor'));
     }
 
     public function store(StoreRequest $request){

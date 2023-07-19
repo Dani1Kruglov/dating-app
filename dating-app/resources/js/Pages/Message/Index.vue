@@ -1,6 +1,7 @@
 <template>
     <body>
-    <h3>Chat</h3>
+    <h3>Chat with: {{interlocutor[0].interlocutor_name}}</h3>
+    <img  class="rounded-circle me-2" v-bind:src="'/storage/' + interlocutor[0].interlocutor_image"   style="height: 250px; width: 250px; object-fit: cover;">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -30,7 +31,8 @@
 export default {
     name: "Index",
     props: [
-        'messages'
+        'messages',
+        'interlocutor'
     ],
     data(){
         return{
