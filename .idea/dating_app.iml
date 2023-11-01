@@ -127,6 +127,9 @@
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/paragonie/sodium_compat" />
       <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/pusher/pusher-php-server" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/laravel/prompts" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/dating-app/vendor/symfony/polyfill-php83" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
